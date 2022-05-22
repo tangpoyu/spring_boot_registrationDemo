@@ -1,5 +1,7 @@
 package com.example.demo.appuser;
 
+import com.example.demo.email.EmailSender;
+import com.example.demo.registration.RegistrationService;
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ public class AppUserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final static String USER_NOT_FOUND_MESSAGE = "user with email %s not found";
     private final ConfirmationTokenService confirmationTokenService;
+    private final EmailSender emailSender;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -41,7 +44,7 @@ public class AppUserService implements UserDetailsService {
             if( confirmationToken.getConfirmedAt() != null ) {
                 throw new IllegalStateException("email already taken");
             } else {
-                throw new IllegalStateException(("resend email"));
+                return confirmationToken.getToken();
             }
 
         }
