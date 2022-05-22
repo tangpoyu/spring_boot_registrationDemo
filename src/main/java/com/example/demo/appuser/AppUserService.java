@@ -1,7 +1,6 @@
 package com.example.demo.appuser;
 
 import com.example.demo.email.EmailSender;
-import com.example.demo.registration.RegistrationService;
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -23,7 +21,6 @@ public class AppUserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final static String USER_NOT_FOUND_MESSAGE = "user with email %s not found";
     private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
