@@ -1,6 +1,6 @@
 package com.example.demo.appuser;
 
-import com.example.demo.email.EmailSender;
+
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
