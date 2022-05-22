@@ -12,7 +12,9 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
+        String x = registrationService.register(request);
+        System.out.println("stop");
+        return x;
     }
 
     @GetMapping(path = "confirm")
