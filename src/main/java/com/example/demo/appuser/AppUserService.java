@@ -1,5 +1,6 @@
 package com.example.demo.appuser;
 
+import com.example.demo.email.EmailSender;
 import com.example.demo.registration.token.ConfirmationToken;
 import com.example.demo.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -41,7 +41,7 @@ public class AppUserService implements UserDetailsService {
             if( confirmationToken.getConfirmedAt() != null ) {
                 throw new IllegalStateException("email already taken");
             } else {
-                throw new IllegalStateException(("resend email"));
+                return confirmationToken.getToken();
             }
 
         }
